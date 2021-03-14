@@ -119,11 +119,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPm-eU-16r">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hPm-eU-16r">
                                 <rect key="frame" x="20" y="128" width="374" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="aYY-qR-6Ya"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -164,7 +161,6 @@
                         <viewLayoutGuide key="safeArea" id="rjR-yo-2kU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="rjR-yo-2kU" firstAttribute="bottom" secondItem="fwf-bc-bJC" secondAttribute="bottom" priority="999" constant="300" id="9Ze-fV-SlC"/>
                             <constraint firstItem="fwf-bc-bJC" firstAttribute="top" secondItem="2vn-hI-wf6" secondAttribute="bottom" constant="40" id="EfB-G8-8Kx"/>
                             <constraint firstItem="2vn-hI-wf6" firstAttribute="top" secondItem="hPm-eU-16r" secondAttribute="bottom" constant="10" id="KOX-zT-Izd"/>
                             <constraint firstItem="hPm-eU-16r" firstAttribute="leading" secondItem="rjR-yo-2kU" secondAttribute="leading" constant="20" id="L7V-iP-14P"/>
@@ -177,6 +173,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="QzN-ha-YmH"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="2vn-hI-wf6" id="qoE-GP-l1m"/>
+                        <outlet property="imageView" destination="S2a-5T-Byv" id="FaP-xw-htD"/>
+                        <outlet property="overviewLabel" destination="seq-sc-OdJ" id="aVG-VH-sHt"/>
+                        <outlet property="titleLabel" destination="hPm-eU-16r" id="6wJ-wS-WGQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fd6-Uv-7F0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

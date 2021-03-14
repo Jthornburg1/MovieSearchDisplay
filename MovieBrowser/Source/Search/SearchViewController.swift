@@ -18,9 +18,12 @@ class SearchViewController: UIViewController {
     
     var searchViewModel = SearchViewModel()
     
+    var selectedIndex = 0
+    
     private struct Constants {
         static let title = "Movie Search"
         static let cellId = "SearchViewCell"
+        static let detailSegueID = "DetailSegue"
     }
     
     override func viewDidLoad() {
@@ -53,6 +56,12 @@ class SearchViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Constants.detailSegueID, let destinationVC = segue.destination as? MovieDetailViewController {
+            let detailViewModel = MovieDetailViewModel(movie: searchViewModel.movies[selectedIndex])
+            destinationVC.detailViewModel = detailViewModel
+        }
+    }
 }
 
 extension SearchViewController: UITableViewDataSource {
@@ -75,6 +84,7 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndex = indexPath.row
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

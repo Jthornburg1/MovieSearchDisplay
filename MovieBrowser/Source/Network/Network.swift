@@ -40,7 +40,9 @@ class Network {
     
     static func fetchPosterImage(path: String, completion: @escaping (UIImage?, Error?) -> Void) {
         
-        guard let encodedUrl = (NetworkingConstants.basePosterUrlString + path).addingPercentEncoding(withAllowedCharacters: CharacterSet.urlPathAllowed), let url = URL(string: encodedUrl) else {
+        let fullPath = (NetworkingConstants.basePosterUrlString + path)
+        
+        guard let url = URL(string: fullPath) else {
             return
         }
         var request = URLRequest(url: url)
@@ -55,7 +57,7 @@ class Network {
             DispatchQueue.main.async {
                 completion(image, nil)
             }
-        }
+        }.resume()
     }
     
 }

@@ -9,23 +9,35 @@
 import Foundation
 import UIKit
 
+protocol ImageUpdatable {
+    func upDate(image: UIImage)
+}
+
 class MovieDetailViewModel {
     
-    let convertibleDateString: String
-    var image: UIImage {
-        guard let placeholder = UIImage(named: "placeholder") else { return UIImage() }
-        return placeholder
+    private struct Constants {
+        static let releaseDatePrefix = "Release Date: "
     }
+    
+    var imageUpdatable: ImageUpdatable?
     let overviewText: String
-    lazy var releaseDateText: String = {
-        return ""
-    }()
-    var titleText: String
+    private let posterPath: String?
+    let releaseDateText: String
+    let titleText: String
     
     init(movie: Movie) {
-        self.convertibleDateString = movie.releaseDate
+        self.releaseDateText = Constants.releaseDatePrefix + Date.slashString(from: movie.releaseDate)
         self.overviewText = movie.overview
+        self.posterPath = movie.posterPath
         self.titleText = movie.title
+    }
+    
+    func fetchImage() {
+        guard let path = posterPath else { return }
+        Network.fetchPosterImage(path: path) { [weak self] image, error in
+            guard let image = image, error == nil else { return }
+            self?.imageUpdatable?.upDate(image: image)
+        }
     }
     
 }
